@@ -1,3 +1,5 @@
+CREATE DATABASE 902008807_902008620_902008741_902008668_902008670;
+
 -- @block
 CREATE TABLE role (
     role_id INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -76,3 +78,56 @@ CREATE TABLE payroll (
     employee_id INTEGER,
     FOREIGN KEY (employee_id) REFERENCES employee(employee_id)
 );
+
+
+SELECT *
+FROM payroll
+CROSS JOIN payment
+ON payroll.employee_id = payment.employee_id;
+
+SELECT *
+FROM employee
+CROSS JOIN salary
+ON employee.employee_id = salary.employee_id;
+
+CREATE PROCEDURE salaries()
+BEGIN
+SELECT *
+FROM salary;
+END ||
+
+CREATE PROCEDURE users()
+BEGIN
+SELECT *
+FROM user;
+END ||
+
+CREATE PROCEDURE jobs()
+BEGIN
+SELECT *
+FROM job;
+END ||
+
+CREATE TRIGGER deleting_employee_1
+AFTER DELETE
+ON employee FOR EACH ROW
+BEGIN
+DELETE FROM payment
+WHERE employee_id = OLD.employee_id;
+END ||
+
+CREATE TRIGGER deleting_employee_2
+AFTER DELETE
+ON employee FOR EACH ROW
+BEGIN
+DELETE FROM salary
+WHERE employee_id = OLD.employee_id;
+END ||
+
+CREATE TRIGGER deleting_employee_3
+AFTER DELETE
+ON employee FOR EACH ROW
+BEGIN
+DELETE FROM payroll
+WHERE employee_id = OLD.employee_id;
+END ||

@@ -1,22 +1,18 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class DatabaseConnection {
-    private final String url = "jdbc:mysql://localhost:3306/payroll";
-    private final String user = "root";
-    private final String password = "";
+    private static final String DRIVER_URL = "com.mysql.cj.jdbc.Driver";
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "";
+    private static final String URL = "jdbc:mysql://localhost:3306/payroll_system";
     private static Connection connection;
-
-    public DatabaseConnection() {
+    static {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection(url, user, password);
-            System.out.println("Connected to database successfully");
+            Class.forName(DRIVER_URL);
+            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            System.out.println("Connected to the database successfully");
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
-            System.out.println("Error: " + e.getMessage());
-            System.exit(1);
         }
     }
 

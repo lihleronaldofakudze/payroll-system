@@ -12,7 +12,12 @@ public class App {
     private static User user;
 
     public static void main(String[] args) throws Exception {
+        DatabaseConnection.getConnection();
 
+        menu();
+    }
+
+    public static void menu() {
         employee = new Employee();
         job = new Job();
         payment = new Payment();
@@ -36,40 +41,35 @@ public class App {
         System.out.print("Enter your choice: ");
         int choice = Integer.parseInt(scanner.nextLine());
 
-        while (choice != 9) {
-            switch (choice) {
-                case 1:
-                    employee.menu();
-                    break;
-                case 2:
-                    job.menu();
-                    break;
-                case 3:
-                    payment.menu();
-                    break;
-                case 4:
-                    payroll.menu();
-                    break;
-                case 5:
-                    permission.menu();
-                    break;
-                case 6:
-                    role.menu();
-                    break;
-                case 7:
-                    salary.menu();
-                    break;
-                case 8:
-                    user.menu();
-                    break;
-                default:
-                    System.out.println("Invalid choice");
-                    break;
-            }
-            System.out.println();
-            System.out.print("Enter your choice: ");
-            choice = Integer.parseInt(scanner.nextLine());
-
+        switch (choice) {
+            case 1:
+                employee.menu();
+                break;
+            case 2:
+                job.menu();
+                break;
+            case 3:
+                payment.menu();
+                break;
+            case 4:
+                payroll.menu();
+                break;
+            case 5:
+                permission.menu();
+                break;
+            case 6:
+                role.menu();
+                break;
+            case 7:
+                salary.menu();
+                break;
+            case 8:
+                user.menu();
+                break;
+            default:
+                System.out.println("Invalid choice");
+                menu();
+                break;
         }
     }
 }

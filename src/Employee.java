@@ -125,22 +125,22 @@ public class Employee extends DatabaseActions {
         try (Scanner scanner = new Scanner(System.in)) {
             Connection connection = DatabaseConnection.getConnection();
 
-            System.out.println("Enter employee name: ");
+            System.out.print("Enter employee name: ");
             setEmployee_name(scanner.nextLine());
 
-            System.out.println("Enter employee mobile: ");
+            System.out.print("Enter employee mobile: ");
             setEmployee_mobile(scanner.nextLine());
 
-            System.out.println("Enter employee email: ");
+            System.out.print("Enter employee email: ");
             setEmployee_email(scanner.nextLine());
 
-            System.out.println("Enter employee address: ");
+            System.out.print("Enter employee address: ");
             setEmployee_address(scanner.nextLine());
 
-            System.out.println("Enter employee username: ");
+            System.out.print("Enter employee username: ");
             setEmployee_username(scanner.nextLine());
 
-            System.out.println("Enter employee password: ");
+            System.out.print("Enter employee password: ");
             setEmployee_password(scanner.nextLine());
 
             String query = "INSERT INTO employee (employee_name, employee_mobile, employee_email, employee_address, employee_username, employee_password) VALUES ('"

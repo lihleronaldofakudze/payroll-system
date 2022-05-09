@@ -1,6 +1,7 @@
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Job extends DatabaseActions {
@@ -110,7 +111,8 @@ public class Job extends DatabaseActions {
                 preparedStatement.executeUpdate();
                 System.out.println("Job Inserted");
                 System.out.println();
-            } catch (Exception e) {
+                menu();
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
@@ -143,6 +145,7 @@ public class Job extends DatabaseActions {
                 preparedStatement.executeUpdate();
                 System.out.println("Job Updated");
                 System.out.println();
+                menu();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -167,6 +170,7 @@ public class Job extends DatabaseActions {
                 preparedStatement.executeUpdate();
                 System.out.println("Job Deleted");
                 System.out.println();
+                menu();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -181,7 +185,7 @@ public class Job extends DatabaseActions {
 
         Connection connection = DatabaseConnection.getConnection();
 
-        String sql = "SELECT * FROM job WHERE job_id = ?";
+        String sql = "SELECT * FROM job";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -192,6 +196,7 @@ public class Job extends DatabaseActions {
                 System.out.println("Job Description: " + resultSet.getString("job_description"));
                 System.out.println();
             }
+            menu();
         } catch (Exception e) {
             e.printStackTrace();
         }
